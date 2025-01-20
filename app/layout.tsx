@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "Credix",
   description: "Credix is modern banking platform",
   icons: {
-    icon: '/icons/logo.svg'
+    icon: '/icons/logo1.svg'
   }
 };
 
