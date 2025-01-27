@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import Footer from './Footer'
 
 const Sidebar = ({user}:SiderbarProps) => {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ const Sidebar = ({user}:SiderbarProps) => {
         <nav className='flex flex-col gap-4'>
             <Link href="/" className='mb-12 cursor-pointer flex items-center gap-2'>
                 <Image
-                 src="/icons/logo1.svg"
+                 src="/icons/logo2.svg"
                  width={34}
                  height={34}
                  alt='Credix Logo'
@@ -47,7 +48,7 @@ const Sidebar = ({user}:SiderbarProps) => {
             })}
             USER
         </nav>
-          FOOTER
+        <Footer user={user}/>
     </section>
   )
 }
