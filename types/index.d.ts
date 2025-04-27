@@ -1,9 +1,17 @@
 /* eslint-disable no-unused-vars */
-
+// import { URLSearchParams } from 'url';
 declare type SearchParamProps = {
+  searchParams: { id?: string , page?: string};
   params: { [key: string]: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
+
+// declare global {
+//   interface SearchParamsProps {
+//     searchParams: Record<string, string | undefined>;
+//     params: { [key: string]: string }; // Ensure this is included
+//   }
+// }
+// export{};
 
 // ========================================
 
@@ -84,12 +92,17 @@ declare type Transaction = {
 
 declare type Bank = {
   $id: string;
+  $createdAt?: string;
+  $updatedAt?: string;
+  $permissions?: string[];
+  $databaseId?: string;
+  $collectionId?: string;
   accountId: string;
   bankId: string;
   accessToken: string;
   fundingSourceUrl: string;
   userId: string;
-  sharableId: string;
+  shareableId: string;
 };
 
 declare type AccountTypes =
@@ -104,7 +117,7 @@ declare type Category = "Food and Drink" | "Travel" | "Transfer";
 declare type CategoryCount = {
   name: string;
   count: number;
-  totalCount: number;
+  totalCount?: number;
 };
 
 declare type Receiver = {

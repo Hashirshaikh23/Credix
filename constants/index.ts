@@ -128,6 +128,12 @@ export const transactionCategoryStyles = {
     textColor: "text-[#027A48]",
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
+  Travel: {
+    borderColor: "border-[#0047AB]",
+    backgroundColor: "bg-blue-500",
+    textColor: "text-blue-700",
+    chipBackgroundColor: "bg-[#ECFDF3]",
+  },
   default: {
     borderColor: "",
     backgroundColor: "bg-blue-500",
@@ -135,3 +141,13 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-inherit",
   },
 };
+
+// Make sure these values are defined
+export const DATABASE_ID = process.env.APPWRITE_DATABASE_ID;
+export const BANK_COLLECTION_ID = process.env.APPWRITE_BANK_COLLECTION_ID;
+
+// Add this for debugging
+console.log("Loading constants:", {
+  DATABASE_ID,
+  BANK_COLLECTION_ID
+});

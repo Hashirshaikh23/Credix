@@ -130,43 +130,29 @@ export function getAccountTypeColors(type: AccountTypes) {
   }
 }
 
-export function countTransactionCategories(
-  transactions: Transaction[]
-): CategoryCount[] {
-  const categoryCounts: { [category: string]: number } = {};
+export function countTransactionCategories(transactions: Transaction[]): CategoryCount[] {
+  if (!transactions || transactions.length === 0) {
+    return [];
+  }
+
+  const categoryCounts: Record<string, number> = {};
   let totalCount = 0;
+  
+  transactions.forEach(transaction => {
+    if (transaction.category) {
+      categoryCounts[transaction.category] = (categoryCounts[transaction.category] || 0) + 1;
+      totalCount += 1;
+    }
+  });
 
-  // Iterate over each transaction
-  transactions &&
-    transactions.forEach((transaction) => {
-      // Extract the category from the transaction
-      const category = transaction.category;
-
-      // If the category exists in the categoryCounts object, increment its count
-      if (categoryCounts.hasOwnProperty(category)) {
-        categoryCounts[category]++;
-      } else {
-        // Otherwise, initialize the count to 1
-        categoryCounts[category] = 1;
-      }
-
-      // Increment total count
-      totalCount++;
-    });
-
-  // Convert the categoryCounts object to an array of objects
-  const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(
-    (category) => ({
-      name: category,
-      count: categoryCounts[category],
-      totalCount,
-    })
-  );
-
-  // Sort the aggregatedCategories array by count in descending order
-  aggregatedCategories.sort((a, b) => b.count - a.count);
-
-  return aggregatedCategories;
+  return Object.entries(categoryCounts)
+    .map(([name, count]) => ({
+      name,
+      count,
+      totalCount // Add this to calculate progress percentage
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5); // Get top 5 categories
 }
 
 export function extractCustomerIdFromUrl(url: string) {
