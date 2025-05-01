@@ -8,10 +8,26 @@ const Transfer = async () => {
 
   const loggedIn = await getLoggedInUser();
   
+  // If user is not logged in, show a message or redirect
+  if (!loggedIn || !loggedIn.$id) {
+    return (
+      <section className='flex'>
+        <div className='my-banks'>
+          <HeaderBox
+            title='My Bank Accounts'
+            subtext='Effortlessly manage your banking activities'
+          />
+          <div className='space-y-4'>
+            <h2 className='header-2'>Your Cards</h2>
+            <div>No user found. Please log in.</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   const accounts = await getAccounts({userId: loggedIn.$id});
 
-  
-  
   const accountsData = accounts?.data || [];
   return (
     <section className="payment-transfer">
