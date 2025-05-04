@@ -4,6 +4,9 @@ import PaymentTransferForm from '@/components/PaymentTransferForm'
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import { getAccounts } from '@/lib/actions/bank.actions';
 
+// Add this line to make the page dynamic
+export const dynamic = 'force-dynamic';
+
 const Transfer = async () => {
 
   const loggedIn = await getLoggedInUser();
